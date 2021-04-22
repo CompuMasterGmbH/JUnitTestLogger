@@ -20,9 +20,8 @@ jobs:
         #needs: build
         runs-on: ${{ matrix.os }}
 
-        variables:
-             dircommand: ls -la
-             copycommand: cp
+        dircommand: 'ls -la'
+        copycommand: cp
 
         strategy:
             fail-fast: false
