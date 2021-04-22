@@ -16,7 +16,7 @@ env:
     BUILD_CONFIGURATION: Debug
 
     COMMAND_DIR: 'ls -la'
-    COMMAND_COPY: 'cp -y'
+    COMMAND_COPY: 'cp'
 
 jobs:
     test:
@@ -63,19 +63,30 @@ jobs:
               run: dotnet test NUnit3Test -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore
               continue-on-error: true
 
+            - name: Collect NUnit3 test results
+              run: '${{env.COMMAND_COPY}} "NUnit3Test/TestResults/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.nunit3.xml"'
+
             - name: Run xUnit tests
               run: dotnet test xUnitTest -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore
               continue-on-error: true
 
+            - name: Collect xUnit test results
+              run: '${{env.COMMAND_COPY}} "xUnitTest/TestResults/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.xunit.xml"'
+
             - name: Run final unit tests on output of previous unit tests
-              run: |
-                - '${{env.COMMAND_COPY}} "NUnit3Test/TestResults/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.nunit3.xml"'
-                - '${{env.COMMAND_COPY}} "xUnitTest/TestResults/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.xunit.xml"'
-                - 'dotnet test FinalUnitTestOutputVerifyTests -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore'
+              run: 'dotnet test FinalUnitTestOutputVerifyTests -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore'
 
             - name: 'Dir Listing test-results'
               if: always()
               run: '${{env.COMMAND_DIR}} test-results'
+
+            - name: 'Dir Listing test-results'
+              if: always()
+              run: '${{env.COMMAND_DIR}} NUnit3Test'
+
+            - name: 'Dir Listing test-results'
+              if: always()
+              run: '${{env.COMMAND_DIR}} NUnit3Test/TestResults'
 
             #Following lines maybe required again after test&dev?!
             #  # the action is useless on pull_request events
