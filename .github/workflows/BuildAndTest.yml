@@ -44,12 +44,12 @@ jobs:
             RESULTS_PATH: TestResults.xml
 
         steps:
-            - name: Dir Listing (Win)
+            - name: Adapt commands (Win only)
               if: startsWith(matrix.os, 'windows')
-              env: 
-                  COMMAND_DIR: dir
-                  COMMAND_COPY: 'copy /y'
-                  COMMAND_MOVE: 'move /y'
+              run: |
+                  'set COMMAND_DIR=dir'
+                  'set COMMAND_COPY=copy /y'
+                  'set COMMAND_MOVE=move /y'
 
             - name: Checkout
               uses: actions/checkout@v2
