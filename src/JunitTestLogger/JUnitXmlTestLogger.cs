@@ -392,15 +392,6 @@ namespace JUnit.TestLogger
                 }
                 element.Add(failure);
             }
-            
-            var stdout = new XElement("system-out");
-            stdout.Value = RemoveInvalidXmlChar("Console Std-Out-Test");
-            element.Add(stdout);
-
-            var stderr = new XElement("system-err");
-            stderr.Value = RemoveInvalidXmlChar("Console Std-Error-Test");
-            element.Add(stderr);
-
             return element;
         }
 
