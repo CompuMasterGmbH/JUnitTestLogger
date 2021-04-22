@@ -41,15 +41,15 @@ jobs:
         #if: success() || failure()
 
         env:
-            RESULTS_PATH: TestResults.xml
+            - RESULTS_PATH: TestResults.xml
+            - COMMAND_DIR: dir
+              if: startsWith(matrix.os, 'windows')
+            - COMMAND_COPY: 'copy /y'
+              if: startsWith(matrix.os, 'windows')
+            - COMMAND_MOVE: 'move /y'
+              if: startsWith(matrix.os, 'windows')
 
         steps:
-            - name: Adapt commands (Win only)
-              if: startsWith(matrix.os, 'windows')
-              run: |
-                  'set COMMAND_DIR=dir'
-                  'set COMMAND_COPY=copy /y'
-                  'set COMMAND_MOVE=move /y'
 
             - name: Checkout
               uses: actions/checkout@v2
