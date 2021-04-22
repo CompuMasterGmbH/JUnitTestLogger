@@ -40,7 +40,7 @@ jobs:
                       env: 
                         COMMAND_DIR:  'dir'
                         COMMAND_COPY: 'copy /y'
-                        COMMAND_MOVE: 'move /y'
+                        COMMAND_MOVE: 'move-item -force'
 
         steps:
             - name: Dump matrix context
