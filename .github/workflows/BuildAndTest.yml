@@ -51,7 +51,7 @@ jobs:
                   dotnet-version: 5.0.x
 
             - name: Dir Listing
-              run: {{COMMAND_DIR}}
+              run: "{{env.COMMAND_DIR}}"
 
             - name: Install dependencies
               run: dotnet restore
@@ -67,12 +67,12 @@ jobs:
 
             - name: Run final unit tests on output of previous unit tests
               run: |
-                - '{{COMMAND_COPY}} "NUnit3Test/TestResults/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.nunit3.xml"'
-                - '{{COMMAND_COPY}} "xUnitTest/TestResults/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.xunit.xml"'
+                - '{{env.COMMAND_COPY}} "NUnit3Test/TestResults/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.nunit3.xml"'
+                - '{{env.COMMAND_COPY}} "xUnitTest/TestResults/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.xunit.xml"'
                 - 'dotnet test FinalUnitTestOutputVerifyTests -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore'
 
             - name: 'Dir Listing test-results'
-              run: '{{COMMAND_DIR}} test-results'
+              run: '{{env.COMMAND_DIR}} test-results'
 
             #Following lines maybe required again after test&dev?!
             #  # the action is useless on pull_request events
