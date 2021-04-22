@@ -27,7 +27,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [windows-latest, ubuntu-latest, macos-latest]
+                os: [windows-latest] #, ubuntu-latest, macos-latest]
                 include:
                     - os: macos-latest
                       runNetExe: mono
@@ -37,19 +37,11 @@ jobs:
                         COMMAND_COPY: 'copy /y'
                         COMMAND_MOVE: 'move /y'
 
-        # the build-and-test job might be skipped, we don't need to run this job then
-        #if: success() || failure()
-
-        env:
-            - RESULTS_PATH: TestResults.xml
-            - COMMAND_DIR: dir
-              if: startsWith(matrix.os, 'windows')
-            - COMMAND_COPY: 'copy /y'
-              if: startsWith(matrix.os, 'windows')
-            - COMMAND_MOVE: 'move /y'
-              if: startsWith(matrix.os, 'windows')
-
         steps:
+            - name: Dump matrix context
+              env:
+                MATRIX_CONTEXT: ${{ toJSON(matrix) }}
+              run: echo "$MATRIX_CONTEXT"
 
             - name: Checkout
               uses: actions/checkout@v2
