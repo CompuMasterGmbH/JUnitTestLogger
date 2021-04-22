@@ -15,10 +15,6 @@ env:
     # Configuration type to build
     BUILD_CONFIGURATION: Debug
 
-    COMMAND_DIR: 'ls -la'
-    COMMAND_COPY: 'cp'
-    COMMAND_MOVE: 'mv -f'
-
 jobs:
     test:
         #needs: build
@@ -28,6 +24,10 @@ jobs:
             fail-fast: false
             matrix:
                 os: [windows-latest, ubuntu-latest, macos-latest]
+                env:
+                   COMMAND_DIR: 'ls -la'
+                   COMMAND_COPY: 'cp'
+                   COMMAND_MOVE: 'mv -f'
                 include:
                     - os: macos-latest
                       runNetExe: mono
