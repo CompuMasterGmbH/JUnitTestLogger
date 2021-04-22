@@ -26,12 +26,12 @@ jobs:
 
         strategy:
             fail-fast: false
+            env: 
+                COMMAND_DIR: dir
+                COMMAND_COPY: 'copy /y'
+                COMMAND_MOVE: 'move /y'
             matrix:
                 os: [windows-latest] #, ubuntu-latest, macos-latest]
-                env: 
-                  COMMAND_DIR: dir
-                  COMMAND_COPY: 'copy /y'
-                  COMMAND_MOVE: 'move /y'
                 include:
                     - os: macos-latest
                       runNetExe: mono
