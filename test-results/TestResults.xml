@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testsuites time="0.097" tests="5" failures="2">
+  <testsuite id="0" name="TestLevel2_FinalUnitTestOutputVerifyTests" tests="5" failures="2" time="0.097">
+    <testcase classname="TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests" name="NUnit3TestResultsOutput" time="0.0638370">
+      <error>  Expected: True
+  But was:  False
+
+   at TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests.VerifyUnitTestResultsOutput(String xmlContent, UnitTestStyle unitTestStyle) in D:\GitHub-OpenSource\JUnitTestLogger\FinalUnitTestOutputVerifyTests\FinalUnitTestOutputTests.vb:line 72
+   at TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests.NUnit3TestResultsOutput() in D:\GitHub-OpenSource\JUnitTestLogger\FinalUnitTestOutputVerifyTests\FinalUnitTestOutputTests.vb:line 41
+</error>
+      <system-out>Console Std-Out-Test</system-out>
+      <system-err>Console Std-Error-Test</system-err>
+    </testcase>
+    <testcase classname="TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests" name="PreviousTestResultsDirectoryExists" time="0.0003260">
+      <system-out>Console Std-Out-Test</system-out>
+      <system-err>Console Std-Error-Test</system-err>
+    </testcase>
+    <testcase classname="TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests" name="PreviousTestResultsNUnit3OutputExists" time="0.0304320">
+      <system-out>Console Std-Out-Test</system-out>
+      <system-err>Console Std-Error-Test</system-err>
+    </testcase>
+    <testcase classname="TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests" name="PreviousTestResultsXUnitOutputExists" time="0.0007540">
+      <system-out>Console Std-Out-Test</system-out>
+      <system-err>Console Std-Error-Test</system-err>
+    </testcase>
+    <testcase classname="TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests" name="XUnitTestResultsOutput" time="0.0017040">
+      <error>  Expected: True
+  But was:  False
+
+   at TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests.VerifyUnitTestResultsOutput(String xmlContent, UnitTestStyle unitTestStyle) in D:\GitHub-OpenSource\JUnitTestLogger\FinalUnitTestOutputVerifyTests\FinalUnitTestOutputTests.vb:line 72
+   at TestLevel2_FinalUnitTestOutputVerifyTests.FinalUnitTestOutputVerifyTests.Tests.XUnitTestResultsOutput() in D:\GitHub-OpenSource\JUnitTestLogger\FinalUnitTestOutputVerifyTests\FinalUnitTestOutputTests.vb:line 35
+</error>
+      <system-out>Console Std-Out-Test</system-out>
+      <system-err>Console Std-Error-Test</system-err>
+    </testcase>
+  </testsuite>
+</testsuites>
