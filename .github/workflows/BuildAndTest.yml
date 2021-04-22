@@ -114,4 +114,7 @@ jobs:
               if: always()
               with:
                   name: NUnit Test Results ${{ matrix.os }}
-                  path: test-results/TestResults.xml
+                  path: |
+                    test-results/TestResults.xml
+                    FinalUnitTestOutputVerifyTests/previous-test-results/testresults.nunit3.xml
+                    FinalUnitTestOutputVerifyTests/previous-test-results/testresults.xunit.xml
