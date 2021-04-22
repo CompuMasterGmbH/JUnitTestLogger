@@ -15,6 +15,10 @@ env:
     # Configuration type to build
     BUILD_CONFIGURATION: Debug
 
+    COMMAND_DIR: 'ls -la'
+    COMMAND_COPY: 'cp'
+    COMMAND_MOVE: 'mv -f'
+
 jobs:
     test:
         #needs: build
@@ -24,16 +28,14 @@ jobs:
             fail-fast: false
             matrix:
                 os: [windows-latest, ubuntu-latest, macos-latest]
-                command-dir:  'ls -la'
-                command-copy: 'cp'
-                command-move: 'mv -f'
                 include:
                     - os: macos-latest
                       runNetExe: mono
                     - os: windows-latest
-                      command-dir:  'dir'
-                      command-copy: 'copy /y'
-                      command-move: 'move /y'
+                      env: 
+                        - COMMAND_DIR: dir
+                        - COMMAND_COPY: 'copy /y'
+                        - COMMAND_MOVE: 'move /y'
 
         # the build-and-test job might be skipped, we don't need to run this job then
         #if: success() || failure()
@@ -51,7 +53,7 @@ jobs:
                   dotnet-version: 5.0.x
 
             - name: Dir Listing
-              run: "${{command-dir}}"
+              run: "${{env.COMMAND_DIR}}"
 
             - name: Install dependencies
               run: dotnet restore
@@ -64,21 +66,21 @@ jobs:
               continue-on-error: true
 
             - name: Collect NUnit3 test results
-              run: '${{command-move}} "test-results/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.nunit3.xml"'
+              run: '${{env.COMMAND_MOVE}} "test-results/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.nunit3.xml"'
 
             - name: Run xUnit tests
               run: dotnet test xUnitTest -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore
               continue-on-error: true
 
             - name: Collect xUnit test results
-              run: '${{command-move}} "test-results/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.xunit.xml"'
+              run: '${{env.COMMAND_MOVE}} "test-results/TestResults.xml" "FinalUnitTestOutputVerifyTests/previous-test-results/testresults.xunit.xml"'
 
             - name: Run final unit tests on output of previous unit tests
               run: 'dotnet test FinalUnitTestOutputVerifyTests -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore'
 
             - name: 'Dir Listing test-results'
               if: always()
-              run: '${{command-dir}} test-results'
+              run: '${{env.COMMAND_DIR}} test-results'
 
             #Following lines maybe required again after test&dev?!
             #  # the action is useless on pull_request events
