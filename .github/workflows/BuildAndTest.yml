@@ -61,9 +61,11 @@ jobs:
 
             - name: Run NUnit3 tests
               run: dotnet test NUnit3Test -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore
+              continue-on-error: true
 
             - name: Run xUnit tests
               run: dotnet test xUnitTest -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore
+              continue-on-error: true
 
             - name: Run final unit tests on output of previous unit tests
               run: |
@@ -72,6 +74,7 @@ jobs:
                 - 'dotnet test FinalUnitTestOutputVerifyTests -v n --framework net5.0 --results-directory test-results --logger junit --configuration=${{env.BUILD_CONFIGURATION}} --no-restore'
 
             - name: 'Dir Listing test-results'
+              if: always()
               run: '${{env.COMMAND_DIR}} test-results'
 
             #Following lines maybe required again after test&dev?!
