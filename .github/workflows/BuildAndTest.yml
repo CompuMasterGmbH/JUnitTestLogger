@@ -44,6 +44,12 @@ jobs:
             RESULTS_PATH: TestResults.xml
 
         steps:
+            - name: Dir Listing (Win)
+              if: startsWith(matrix.os, 'windows')
+              env: 
+                  COMMAND_DIR: dir
+                  COMMAND_COPY: 'copy /y'
+                  COMMAND_MOVE: 'move /y'
 
             - name: Checkout
               uses: actions/checkout@v2
