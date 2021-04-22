@@ -52,7 +52,7 @@ jobs:
                   dotnet-version: 5.0.x
 
             - name: Dir Listing
-              run: "${{env.COMMAND_DIR}}"
+              run: "${{matrix.env.COMMAND_DIR}}"
 
             - name: Install dependencies
               run: dotnet restore
