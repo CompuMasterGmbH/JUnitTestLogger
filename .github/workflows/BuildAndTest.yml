@@ -103,7 +103,7 @@ jobs:
                   report_individual_runs: true
 
             - name: Unit Test Results (Win/Mac)
-              uses: EnricoMi/publish-unit-test-result-action/composite@v1
+              uses: EnricoMi/publish-unit-test-result-action/composite@v2
               if: always() && (!(startsWith(matrix.os, 'ubuntu')))
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
