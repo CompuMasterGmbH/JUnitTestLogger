@@ -92,7 +92,7 @@ jobs:
             #  if: always() #&& startsWith(matrix.os, 'ubuntu') #&& github.event_name != 'pull_request'
 
             - name: Unit Test Results (Linux)
-              uses: EnricoMi/publish-unit-test-result-action@v1
+              uses: EnricoMi/publish-unit-test-result-action@v2
               if: always() && startsWith(matrix.os, 'ubuntu')
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
