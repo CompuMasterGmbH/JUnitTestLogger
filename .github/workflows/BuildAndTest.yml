@@ -92,7 +92,7 @@ jobs:
             #  if: always() #&& startsWith(matrix.os, 'ubuntu') #&& github.event_name != 'pull_request'
 
             - name: Unit Test Results (Linux)
-              uses: EnricoMi/publish-unit-test-result-action@v2
+              uses: EnricoMi/publish-unit-test-result-action/linux@v2
               if: always() && startsWith(matrix.os, 'ubuntu')
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -102,9 +102,20 @@ jobs:
                   check_name: Unit Test Results (${{matrix.os}})
                   report_individual_runs: true
 
-            - name: Unit Test Results (Win/Mac)
-              uses: EnricoMi/publish-unit-test-result-action/composite@v2
-              if: always() && (!(startsWith(matrix.os, 'ubuntu')))
+            - name: Unit Test Results (Mac)
+              uses: EnricoMi/publish-unit-test-result-action/macos@v2
+              if: always() && startsWith(matrix.os, 'macos')
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  files: "test-results/TestResults.xml"
+                  check_run_annotations: all tests
+                  comment_title: Unit Test Statistics (${{matrix.os}})
+                  check_name: Unit Test Results (${{matrix.os}})
+                  report_individual_runs: true
+
+            - name: Unit Test Results (Win)
+              uses: EnricoMi/publish-unit-test-result-action/windows@v2
+              if: always() && startsWith(matrix.os, 'windows')
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   files: "test-results/TestResults.xml"
