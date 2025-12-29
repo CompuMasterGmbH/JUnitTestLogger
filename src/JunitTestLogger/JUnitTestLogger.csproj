@@ -35,14 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- README ins Paket-Root -->
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <!-- alle Bilder aus dem README-Ordner mitnehmen, Pfade beibehalten -->
-    <None Include="..\..\screenshots\**\*.*" Pack="True" PackagePath="screenshots\" />
-    
     <None Include="..\logo_64x64.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

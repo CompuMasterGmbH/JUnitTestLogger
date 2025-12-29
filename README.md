@@ -25,7 +25,7 @@ PLEASE NOTE: a simple `dotnet test --results-directory test-results --logger jun
 
 In your YAML file at .github/workflows/BuildAndTest.yml, define jobs like in following example. Please note the multi-platform/multi-target approach of the example.
 
-![GitHub Workflow Action](screenshots/github-action.png)
+![GitHub Workflow Action](https://raw.githubusercontent.com/CompuMasterGmbH/JUnitTestLogger/master/screenshots/github-action.png)
 
 ```yml
     build-and-test:
@@ -123,7 +123,7 @@ In your YAML file at .github/workflows/BuildAndTest.yml, define jobs like in fol
 
 ### GitLab
 
-![GitLab Workflow](screenshots/gitlab-workflow.png)
+![GitLab Workflow](https://raw.githubusercontent.com/CompuMasterGmbH/JUnitTestLogger/master/screenshots/gitlab-workflow.png)
 
 In your YAML file, define a test job like
 
