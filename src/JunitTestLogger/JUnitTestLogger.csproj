@@ -10,8 +10,9 @@
     <Product>JUnitTestLogger4GitHub</Product>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/CompuMasterGmbH/JUnitTestLogger</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <BuildOutputTargetFolder>build</BuildOutputTargetFolder>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Syncromatics Engineering, CompuMaster GmbH</Copyright>
     <RepositoryUrl>https://github.com/CompuMasterGmbH/JUnitTestLogger.git</RepositoryUrl>
@@ -34,6 +35,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- README ins Paket-Root -->
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <!-- alle Bilder aus dem README-Ordner mitnehmen, Pfade beibehalten -->
+    <None Include="..\..\screenshots\**\*.*" Pack="True" PackagePath="screenshots\" />
+    
     <None Include="..\logo_64x64.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
