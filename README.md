@@ -1,6 +1,6 @@
 # JUnitTestLogger4GitHub
 
-This is a .NET library that adapts unit test output into the JUnit result format - with error message and stack trace combined into a single value for compatibility with GitHub/GitLab test pipelines
+This is a .NET library that adapts unit test output into the JUnit result format - with error message and stack trace combined into a single value for compatibility with **GitHub/GitLab** test pipelines
 
 ## Purpose of this fork
 
